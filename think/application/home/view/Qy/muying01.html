@@ -1,0 +1,176 @@
+<!DOCTYPE html >
+<html lang="en">
+<head>
+    <title>优惠券实时更新 | 最新最全的淘宝天猫店铺优惠券信息</title>
+    
+    
+    <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="__ROOT__/Public/css/coupon.css" />  
+    
+    
+
+<body>
+
+    <div class="top">
+        <div class="two">
+            <div class="collect">
+                <span>请按键盘&nbsp;<img style="position:relative;top:5px;" src="__ROOT__/Public/png/collect_ico.png">&nbsp;把本站加入收藏夹</span>&nbsp;&nbsp;&nbsp;本站现在处于开发测试阶段，部分功能失效，请谅解
+            </div>
+        </div>
+    </div>
+    <div class="head">
+        <div class="header">
+            <div class="logobock">
+                <img src=__ROOT__/Public/png/log.png />
+            </div>
+            <div class="searchbock">
+                <form action="__APP__/Home/Index/sousuo" method="post" id="search" class="search">
+                    <input type="text" name="s" class="search_table" value="" placeholder="粘贴宝贝标题或输入关键词找优惠券" />
+                    <input type="submit" class="searchbtn" value="搜索" />
+                </form>
+
+                <ul class="hotword">
+                    <li class="word">电扇</li>
+                    <li class="word">点灯</li>
+                    <li class="word">上衣</li>
+                    <li class="word">裤子</li>
+                    <li class="word">夏凉被</li>
+
+                    <li class="word">零食</li>
+                </ul>
+            </div>
+            <div class="or">
+                <span class="orcode">微信扫码更方便</span>
+                <img class="code" src="__ROOT__/Public/png/ma.jpg">
+            </div>
+            
+        </div>
+    </div>
+   <!--  <div class="catalog">
+       <div class="nav">
+           <a class="link" href="link">今日上新</a>
+           <a class="link" href="link">超级优惠</a>
+           <a class="link" href="link">抢券排行</a>
+           <a class="link" href="link">每日快播</a>
+           <a class="link" href="link">九元包邮</a>
+
+       </div> -->
+        
+    </div>
+    <!-- 一层 -->
+    <div class="web_content">
+     <!-- 二层轮播 -->
+        <!-- <div class="coupon_two"></div>
+        	<!-- san -->
+        	<!-- <div class="san"> -->
+        	<!-- si层 -->
+        	<!-- <div class="lunbotu"> -->
+        		<!-- wu层 -->
+        		<!-- <div class="zhutu"> -->
+        			<!-- liu -->
+        			<!-- <div class=""></div>
+        			<div class=""></div>
+        			<div class=""></div>
+        			<div class=""></div>
+        			<div class=""></div>
+        			<div class=""></div>
+        			<div class=""></div>
+        			<div class=""></div>
+ -->
+<!--         		</div>
+        		<div class="tubotton"></div>
+        		<div class="tubotton"></div>
+        		<div class="turightdao"></div>
+        	</div>
+        	</div> --> 
+            <!-- 二层优惠券目录 -->
+        <div class="coupon_ca">   
+            <div class="musan">
+                 
+            </div>
+
+        </div>
+        <div class="coupon_content">
+            <div class="san">
+                <div class="si a">
+                    <div class="muwu">
+                    <ul >
+                        <li class="catelog"><a href="__APP__/Home/Index/index">全部分类</a></li>
+                        <li class="catelog"><a href="__APP__/Home/Qy/meirong">美妆个护</a></li>
+                        <li class="catelog"><a href="__APP__/Home/Qy/shenghuo">家居日用</a></li>
+                        <li class="catelog"><a href="__APP__/Home/Qy/meishi">食品酒水</a></li>
+                        <li class="catelog"><a href="__APP__/Home/Qy/fushi">鞋包服饰</a></li>
+                        <li class="catelog"><a href="__APP__/Home/Qy/shuma">数码家电</a></li>
+                        <li class="catelog"><a href="__APP__/Home/Qy/muying">母婴玩具</a></li>
+                    </ul>
+                    <span class="s_line"></span>
+                    
+                    <!-- <a class="selc_quan <?php if($changeUrl=="on"){ echo "selc_current"; }?>" href="<?php if($changeUrl=="on"){ echo "/coupon/?t=".$category; }else{echo "/coupon/?t=".$category."&s=9";}; ?>" title="点击选择"> -->
+                    <a class="selc_quan" href="__APP__/Home/Qy/index"  title="点击选择">
+                        <span class="selc_quan_icon"></span>
+                        <span class="selc_quan_nav">9块9封顶</span>
+                 
+                    </a>
+                    </div>
+                </div>   
+
+                <div class="si">
+                    <ul class="wu">
+                    <foreach name="result" item="vo">
+
+                        <li class="good">
+                            <div class="">
+                                <a isconvert="1" href={$vo.coupon_url} target="_blank">
+                                <img src={$vo.picture_url} /></a>
+                                       
+                            </div>
+                            <div class="">
+                                    <p class="titleziti"><a class="titleziti" isconvert="1" href={$vo.coupon_url} target="_blank">{$vo.title}</a> </p>
+                            </div>
+                            <div class="">
+                                    <span class="pir">券后价</span>
+                                    <span class="price">￥{$vo.final_price}</span>
+                                    <span class=""></span>
+                            </div>
+                            <div class="">
+                                    
+                                    <span class="lingquan"><a class="lingquan" isconvert="1" href={$vo.coupon_url} target="_blank">{$vo.coupon_value}</a></span>
+                                    <span class=""></span>
+                                    
+                                              
+                                    <span class="yiling">{$vo.get_people}</span>
+                                     
+                            </div>
+                        
+                    
+                        </li>
+                    </foreach>
+                    
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="copyright">
+        <ul>
+            <li class="cr"> | © 2017 ganggang</li>
+            <li class="cr"> | ICP备案：豫ICP备17003772号-1</li>
+            <li ></li>    
+            <li ></li>    
+            <li></li>
+        </ul>>
+        
+    </div>
+ 
+    
+
+
+
+
+
+
+</body>
+</html>
+

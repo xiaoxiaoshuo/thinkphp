@@ -1,0 +1,317 @@
+<!DOCTYPE html >
+<html lang="en">
+<head>
+    <title>优惠券实时更新 | 最新最全的淘宝天猫店铺优惠券信息</title>
+    
+    
+    <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+    <meta name="Description" content="刚刚优是一个专业的网购推荐分享网站。汇集了全网主流电商值得买、高性价比商品，为用户提供高效、便捷的网购体验！">
+    <meta name="Keywords" content="刚刚优，发现值得买,今日值得买,什么值得买,惠惠购物助手,慢慢买,慢慢买比价网,北美省钱快报,没得比,逛丢网">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> -->
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <meta property="og:description" content="刚刚优是一个专业的网购推荐分享网站。汇集了全网主流电商值得买、高性价比商品，为用户提供高效、便捷的网购体验！">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="stylesheet" type="text/css" href="__ROOT__/static/css/zhancoupon.css" />
+    <!-- <link rel="stylesheet" href="__ROOT__/Public/js/coupon.js" /> -->
+    
+
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+    <!-- <script src="__ROOT__/Public/js/coupon.js"></script>  -->
+    <script type="text/javascript">
+    'use strict';
+            $(document).ready(function() {
+            var list = $('#list');
+            var prev = $('#prev');
+            var next = $('#next');
+            var timer;
+            // var index=0;
+            var container = $('#container');
+            var buttons = $('#buttons span');
+            play();
+            // alert(buttons.length);
+            function play() {
+                timer = setInterval(function () {
+                    prev.click()
+                }, 1500)
+            }
+            function stop() {
+                clearInterval(timer);
+            }
+            
+            
+            container.mouseenter(function(){
+            	stop();
+
+            });
+            container.mouseleave(function(){
+            	play();
+
+            });
+            function buttonsShow(index) {
+                //这里需要清除之前的样式
+                for (var i = 0; i < buttons.length; i++) {
+                     
+                        // buttons[i].css('on','');
+                        // alert(index);
+                    
+                }
+                //数组从0开始，故index需要-1
+                // buttons[index].css('background','orangered');
+                // buttons[index].className = "on";
+                // alert(index);
+            }
+            
+           
+           
+            
+            prev.click(function () {
+                var index=0;
+            	index=index+1;
+                // index =index-1;
+				var newLeft;
+                newLeft=parseInt(list.css('left'))+720;
+
+               if (newLeft>0){
+                   var d=-2160+'px';
+                   list.css('left',d);
+                }else{
+
+                var d=newLeft + 'px';
+                list.css('left',d);
+                }
+                buttonsShow(index);
+            }); 
+            next.click(function () { 
+            	var index=0;
+            	var newLeft;
+            	index=index+1;
+                newLeft=parseInt(list.css('left'))-720;
+                if (newLeft<-3600){
+                   var d=-1440+'px';
+                   list.css('left',d);
+                }else{
+
+	                var d=newLeft + 'px';
+	                list.css('left',d);
+                }
+                // alert("search");
+                buttonsShow(index);
+                // alert(index);
+                
+            });
+            
+        });
+</script> 
+    
+    
+
+<body>
+
+    <div class="top">
+        <div class="two">
+            <div class="collect">
+                <span>请按键盘&nbsp;<img style="position:relative;top:5px;" src="__ROOT__/static/png/collect_ico.png">&nbsp;把本站加入收藏夹</span>&nbsp;&nbsp;&nbsp;本站现在处于开发测试阶段，部分功能失效，请谅解
+            </div>
+        </div>
+    </div>
+    <div class="head">
+        <div class="header">
+            <div class="logobock">
+                <img  class="img-responsive" src=__ROOT__/static/png/log.png />
+            </div>
+            <div class="searchbock">
+                <form action="__APP__/Home/Index/sousuo" method="post" id="search" class="search">
+                    <input type="text" name="s" class="search_table" value={$biaoti}  >
+                    <!-- placeholder="粘贴宝贝标题或输入关键词找优惠券"  -->
+                    <input type="submit" class="searchbtn" value="搜索" />
+                </form>
+
+                <ul class="hotword">
+                    <li class="word">风扇</li>
+                    <li class="word">电灯</li>
+                    <li class="word">上衣</li>
+                    <li class="word">裤子</li>
+                    <li class="word">夏凉被</li>
+
+                    <li class="word">零食</li>
+                </ul>
+            </div>
+            <div class="or">
+                <span class="orcode">微信扫码更方便</span>
+                <img   class="img-responsive" width="80" height="80" class="code" src="__ROOT__/static/png/ma.jpg">
+            </div>
+            
+        </div>
+    </div>
+    
+    <div class="catalog">
+       <div class="nav" class="nav nav-pills nav-stacked" class="navbar navbar-default" role="navigation">
+           <a class="link" href="__APP__/Home/Index/index">今日上新</a>
+           <a class="link" href="__APP__/Home/Qy/qiangquanbang">超级优惠</a>
+           <a class="link" href="__APP__/Home/Qy/youhuibang">抢券排行</a>
+           <a class="link" href="#">新手指南</a>
+           <a class="link" href="__APP__/Home/Qy/index">20元封顶</a>
+
+       </div>
+        
+    </div>
+    
+    <!-- 一层 -->
+    <div class="web_content">
+     
+
+
+        <!-- 二层轮播 -->
+        <div class="coupon_two">
+        	<!-- san -->
+        	<div class="three">
+        	<!-- si层 -->
+            	<div class="lunbotu" id="container" >
+            		               
+            		<div class="zhutu" id="list" style="left: -720px;">
+            			<img src="__ROOT__/static/png/pc4.jpg" alt="First slide">
+            			<img src="__ROOT__/static/png/pc1.jpg" alt="First slide">
+            			<img src="__ROOT__/static/png/pc2.jpg" alt="First slide">
+            			<img src="__ROOT__/static/png/pc3.jpg" alt="First slide">
+            			<img src="__ROOT__/static/png/pc4.jpg" alt="First slide">
+                        <img src="__ROOT__/static/png/pc1.jpg" alt="First slide">
+            			<div style="clear:both;"></div>
+
+            		</div>
+            		<div id="buttons">
+                        <span index="1" class="on"></span>
+                        <span index="2"></span>
+                        <span index="3"></span>
+                        <span index="4"></span>
+                    </div>
+                    <a href="javascript:;" id="prev" class="arrow">&lt;</a>
+                    <a href="javascript:;" id="next" class="arrow">&gt;</a>
+            		 
+        	    </div>
+        	</div> 
+        
+        </div>
+
+       <!-- 二层目录和优惠券 -->
+        <div class="coupon_content">
+            <div class="san">
+                <div class="si a">
+                    <div class="muwu">
+                    <ul >
+                        <li class="catelog"><a href="__APP__/Home/Index/index">全部分类</a></li>
+                        <li class="catelog"><a href="__APP__/Home/Qy/meirong">美妆个护</a></li>
+                        <li class="catelog"><a href="__APP__/Home/Qy/shenghuo">家居日用</a></li>
+                        <li class="catelog"><a href="__APP__/Home/Qy/meishi">食品酒水</a></li>
+                        <li class="catelog"><a href="__APP__/Home/Qy/fushi">鞋包服饰</a></li>
+                        <li class="catelog"><a href="__APP__/Home/Qy/shuma">数码家电</a></li>
+                        <li class="catelog"><a href="__APP__/Home/Qy/muying">母婴玩具</a></li>
+                        
+                    </ul>
+                    <span class="s_line"></span>
+                    
+                    
+                    <a class="selc_quan" href="__APP__/Home/Qy/index"  title="点击选择">
+                        <span class="selc_quan_icon"></span>
+                        <span class="selc_quan_nav">9块9包邮</span>
+                 
+                    </a>
+                    </div>
+                </div>   
+
+                <div class="si">
+                    <ul class="wu">
+                    <!-- <foreach name="result" id="vo"> -->
+                    {volist name="result" id="vo" offset="0" length='40'}
+
+                        <li class="good">
+                            <div class="">
+                                <a isconvert="1" href={$vo.coupon_url} target="_blank">
+                                <img   class="img-responsive" src={$vo.picture_url} /></a>
+                                       
+                            </div>
+                            <div class="">
+                                    <p class="titleziti"><a class="titleziti" isconvert="1" href={$vo.coupon_url} target="_blank">{$vo.title}</a> </p>
+                            </div>
+                            <div class="">
+                                    <span class="pir">券后价</span>
+                                    <span class="price">￥{$vo.final_price}</span>
+                                    <span class=""></span>
+                            </div>
+                            <div class="">
+                                    
+                                    <span class="lingquan"><a class="lingquan" isconvert="1" href={$vo.coupon_url} target="_blank">领{$vo.coupon_value}元券</a></span>
+                                    <span class=""></span>
+                                    
+                                              
+                                    <span class="yiling">{$vo.get_people}人已领</span>
+                                     
+                            </div>
+                        
+                    
+                        </li>
+                        <!-- <div style="clear:both;"></div> -->
+                    {/volist}
+                    
+
+                    </ul>
+                    <div style="clear:both;"></div>
+                </div>
+                <div style="clear:both;"></div>
+            </div>
+            <div style="clear:both;"></div>
+        </div>
+        <!-- 二曾分页 -->
+        <div class="fenye">
+                <div class="pagination">
+                    <a href="__APP__/Home/fenye/sx?shang" class=""><span class="pubfont"><  </span>上一页</a>
+                    <a href="__APP__/Home/Fenye/index?fen=1" class="btn btn-xlarge btn-current">1</a>
+                    <a href="__APP__/Home/fenye/index?fen=2" class="btn btn-xlarge btn-current">2</a>
+                    <a href="__APP__/Home/fenye/index?fen=3" class="btn btn-xlarge btn-current">3</a>
+                    <a href="__APP__/Home/fenye/index?fen=4" class="btn btn-xlarge btn-current">4</a>
+                    <a href="__APP__/Home/fenye/index?fen=5" class="btn btn-xlarge btn-current">5</a>
+
+                    <span class="m">...</span>
+                    <a id="xia" href="__APP__/Home/fenye/index?fen".{$zongye} class="btn btn-xlarge btn-current">{$zongye}</a>
+                    <a id="xiaye" class="btn">下一页<span class="pubfont">  ></span></a>
+                </div>
+                <div class="go">
+                     <form action="__APP__/Home/fenye/index"><span class="n">到第</span><input class="input" name="fen" type="text" value="2"><span class="n">页</span><button type="submit" class="btnon">确定</button></form>
+                </div>
+                <div style="clear:both;"></div>    
+        </div>
+        <div style="clear:both;"></div>
+    </div>
+    <script type="text/javascript">
+        var a = $('#xiaye');
+a.on('click', function () {
+    
+var jqxhr = $.get('/tp/public/index.php/index/index/ec.html', {
+    ).done(function (data) {
+    ajaxLog('成功, 收到的数据: ');
+}).fail(function (xhr, status) {
+    ajaxLog('失败: ' + xhr.status + ', 原因: ' + status);
+}).always(function () {
+    ajaxLog('请求完成: 无论成功或失败都会调用');
+});
+
+
+});
+    </script>
+    
+    <div class="copyright">
+        <ul>
+            <li class="cr"> | © 2017 ganggang</li>
+            <li class="cr"> | ICP备案：豫ICP备17003772号-1</li>
+            <li class="cr"> | <script type="text/javascript" src="http://ip.chinaz.com/getip.aspx"></script></li>    
+            <li class="cr"> | <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1263071243'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/z_stat.php%3Fid%3D1263071243%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script></li>    
+            <li></li>
+        </ul>>
+        
+    </div>
+ 
+
+</body>
+</html>
+

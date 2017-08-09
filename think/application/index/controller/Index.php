@@ -1,10 +1,125 @@
 <?php
 namespace app\index\controller;
 
-class Index
+use think\db\Connection;
+use think\db\Query;
+use think\Controller;
+    
+class Index  extends Controller
+   
 {
+	public function is_mobile()
+    {
+    # 如果有HTTP_X_WAP_PROFILE则一定是移动设备
+        if (isset ($_SERVER['HTTP_X_WAP_PROFILE']))
+        {
+            return true;
+        }
+    # 如果via信息含有wap则一定是移动设备,部分服务商会屏蔽该信息
+        if (isset ($_SERVER['HTTP_VIA']))
+        {
+    # 找不到为flase,否则为true
+            return stristr($_SERVER['HTTP_VIA'], "wap") ? true : false;
+        }
+    # 脑残法，判断手机发送的客户端标志,兼容性有待提高
+        if (isset ($_SERVER['HTTP_USER_AGENT']))
+        {
+            $clientkeywords = array (
+                'nokia',
+                'oppo',
+                'xiaomi',
+                'miui',
+                'huawei',
+                'coolpad',
+                'sony',
+                'ericsson',
+                'mot',
+                'samsung',
+                'htc',
+                'sgh',
+                'lg',
+                'sharp',
+                'sie-',
+                'philips',
+                'panasonic',
+                'alcatel',
+                'lenovo',
+                'iphone',
+                'ipod',
+                'blackberry',
+                'meizu',
+                'android',
+                'netfront',
+                'symbian',
+                'ucweb',
+                'windowsce',
+                'palm',
+                'operamini',
+                'operamobi',
+                'openwave',
+                'nexusone',
+                'cldc',
+                'midp',
+                'wap',
+                'mobile'
+            );
+         # 从HTTP_USER_AGENT中查找手机浏览器的关键字
+            if (preg_match("/(" . implode('|', $clientkeywords) . ")/i", strtolower($_SERVER['HTTP_USER_AGENT'])))
+            {
+                return true;
+            }
+            return false;
+        }
+        # 协议法，因为有可能不准确，放到最后判断
+        if (isset ($_SERVER['HTTP_ACCEPT']))
+        {
+        # 如果只支持wml并且不支持html那一定是移动设备
+        # 如果支持wml和html但是wml在html之前则是移动设备
+            if ((strpos($_SERVER['HTTP_ACCEPT'], 'vnd.wap.wml') !== false) && (strpos($_SERVER['HTTP_ACCEPT'], 'text/html') === false || (strpos($_SERVER['HTTP_ACCEPT'], 'vnd.wap.wml') < strpos($_SERVER['HTTP_ACCEPT'], 'text/html'))))
+            {
+                return true;
+            }
+        }
+        return false;
+    }    
     public function index()
     {
-        return '<style type="text/css">*{ padding: 0; margin: 0; } .think_default_text{ padding: 4px 48px;} a{color:#2E5CD5;cursor: pointer;text-decoration: none} a:hover{text-decoration:underline; } body{ background: #fff; font-family: "Century Gothic","Microsoft yahei"; color: #333;font-size:18px} h1{ font-size: 100px; font-weight: normal; margin-bottom: 12px; } p{ line-height: 1.6em; font-size: 42px }</style><div style="padding: 24px 48px;"> <h1>:)</h1><p> ThinkPHP V5<br/><span style="font-size:30px">十年磨一剑 - 为API开发设计的高性能框架</span></p><span style="font-size:22px;">[ V5.0 版本由 <a href="http://www.qiniu.com" target="qiniu">七牛云</a> 独家赞助发布 ]</span></div><script type="text/javascript" src="http://tajs.qq.com/stats?sId=9347272" charset="UTF-8"></script><script type="text/javascript" src="http://ad.topthink.com/Public/static/client.js"></script><thinkad id="ad_bd568ce7058a1091"></thinkad>';
+        $result=db('coupon')->order('id desc')->select();
+        $this->assign('result', $result);
+        if ($this->is_mobile()) {
+           
+            return $this->fetch();
+        }else{
+            $Stu = db('coupon');
+            $biaoti="搜你想要的宝贝";
+            $this->assign("biaoti", $biaoti);
+            $zongye=$Stu->field('id',true); 
+            $zongye=count($zongye)-count($zongye)%40;
+            $zongye=$zongye/40+1;
+       
+       
+
+            $this->assign("zongye", $zongye);
+            return $this->fetch('../application/home/view/index/index.html');
+        }
+        // return json($result);
+        
+    }
+
+    public function js()
+    {
+        $data = ['name'=>'thinkphp','url'=>'thinkphp.cn'];
+        // 指定json数据输出
+        return json(['data'=>$data,'code'=>1,'message'=>'操作完成']);
+    
+    }
+    public function ec()
+    {
+        // $data = ['name'=>'thinkphp','url'=>'thinkphp.cn'];
+        // 指定json数据输出
+        // Db::table('coupon')->select();
+        $s=db('coupon')->where('id',9754)->select();
+        return json($s);
+    
     }
 }

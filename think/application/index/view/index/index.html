@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+    <meta charset="utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta content="telephone=no" name="format-detection">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <title>刚刚优 | 最新最全的淘宝天猫优惠券</title>
+    <meta name="description" content=""> 
+    <meta name="keywords" content="刚刚优">
+    <link rel="stylesheet" type="text/css" href="__ROOT__/static/css/coupon.css" />
+    <link rel="stylesheet" type="text/css" href="__ROOT__/static/css/swiper-3.4.2.min.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="__ROOT__/static/css/jquery.mobile-1.4.5.min.css" /> -->
+	  
+	<script src="https://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+	<!-- <script src="https://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.js"></script> -->
+  <script src="__ROOT__/static/js/swiper-3.4.2.min.js"></script>
+</head>
+<body>
+
+<div data-role="page" id="pageone">
+  <div data-role="header" id="topweb">
+    <span class="main-logo">
+        刚刚优    </span>
+    <div class="search" style="width: 218px;">
+        <form action="#" method="get" id="form">
+            <input type="hidden" name="action" value="search" style="width: 186px;">
+            <button id="search_submit"></button>
+            <input class="ui-input-text" type="text" value="" placeholder="好宝贝 等你搜" name="q" id="shuru" autocomplete="off" style="width: 186px;">
+        </form>
+
+    </div>
+        <span id="daohang" ></span>
+    
+  </div>
+
+  <div data-role="main" class="ui-content" id="web">
+      <div class="swiper-container" id="lubo"  height: 172.164px;>
+          <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <a href="">
+                        <img class="lunbotupian" src="https://img.alicdn.com/imgextra/i3/2508158775/TB2RLnraNolyKJjSZPfXXawNpXa_!!2508158775.jpg">
+                    </a>
+                </div>
+                <div class="swiper-slide" >
+                    <a href="">
+                        <img class="lunbotupian"  src="https://img.alicdn.com/imgextra/i1/2508158775/TB2XVKWXTMlyKJjSZFFXXalVFXa_!!2508158775.png">
+                    </a>
+                </div>
+                <div class="swiper-slide">
+                    <a href="  ">
+                        <img  class="lunbotupian" src="https://img.alicdn.com/imgextra/i1/2508158775/TB21uRSanIlyKJjSZFrXXXn2VXa_!!2508158775.jpg">
+                    </a>
+                </div>
+                
+                          
+           </div>
+           <div class="swiper-pagination"></div>
+      </div>
+      <div class="quan">
+          <div  class="goods-list">
+          {volist name="result" id="vo" offset="0" length='20'}
+          <div class="list">
+            <a href={$vo.coupon_url} >
+                <div class="">
+                             
+                    <img id="goodtu" src={$vo.picture_url} />
+                           
+                </div>
+                <div class="">
+                        <p class="titleziti">{$vo.title} </p>
+                </div>
+                <div class="">
+                        <span class="pir">券后价</span>
+                        <span class="price">￥{$vo.final_price}</span>
+
+                </div>
+                <div class="">
+                        
+                        <span class="price">{$vo.coupon_value}</span>
+                        <span class="pir">元优惠券</span>
+                        
+                                  
+                        <span class="pir" id="renling">{$vo.get_people}人已领</span>
+                        <!-- <span class="pir" id="renling"></span> -->
+ 
+                </div>
+            </a>
+            
+          </div>
+          {/volist}
+          <div style="clear:both;"></div>
+          </div>
+          <div style="clear:both;"></div>
+      </div>
+  
+
+
+  <div data-role="footer">
+    
+  </div>
+</div>
+<script>        
+  var mySwiper = new Swiper ('.swiper-container', {
+          direction: 'horizontal',
+          loop: true,
+          pagination: '.swiper-pagination',
+          autoplay : 1000,
+          runCallbacksOnInit : true,
+        });
+</script>
+<script type="text/javascript">
+  var isFinish = false;
+  var isLoading = false;
+  var $pullUp = null;
+  var needLoadMore = false;
+  var maxScrollY = 0;
+  var windowHeight = 0;
+  $(document).ready(function (){
+        
+    
+        maxScrollY = $(document).height();
+        windowHeight = $(window).height();
+        $(window).on('resize', function () {
+            windowHeight = $(window).height();
+        });
+         
+        $(window).scroll(function (e) {
+            if (isFinish || isLoading) {
+                return;
+            }
+
+            var y = $(document).scrollTop();
+            maxScrollY = $(document).height();
+            windowHeight = $(window).height();
+             // alert(y);
+             // alert('wHe2'+windowHeight);
+             // alert('max2'+maxScrollY);
+            if (Math.abs(maxScrollY - windowHeight - y) > 100) {
+                return;
+            }
+            var $wrapper = $(this);
+            // if (!$pullUp) {
+            //     $pullUp = $wrapper.find('.pullup-goods');
+            // }
+            var data = null;
+            getData( 1);
+        });
+        function getData(page) {
+            if (isFinish) {
+                return;
+            }
+            isLoading = true;
+             alert(page);
+            // $.ajax({url:"",
+              
+            //   success:function(result){
+              
+            //   document.write(result);
+              
+            // }});
+        }
+  });
+  </script>
+
+</body>
+</html>
